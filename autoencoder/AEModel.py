@@ -1,7 +1,7 @@
 from torch import nn
 
 
-class SimpleAE(nn.Module):
+class AutoEncoder(nn.Module):
     def __init__(self):
         super().__init__()
         self.name = "simple autoencoder"

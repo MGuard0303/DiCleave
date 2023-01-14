@@ -16,6 +16,8 @@ The pre-miRNA secondary structure embedding is a 64-dimensional vector acquired 
 <br>
 <br>
 **To verify the results from our article, clone this repository and run :page_facing_up: evalute.py file**
+
+You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. `mode` accepts two values, "binary" and "multi", to evaluate the results of binary models and multiple model, respectively. Thus, first change the working directory to DiCleave, then run `python3 evaluate.py binary` to verify binary models, or run `python3 evaluate.py multi` for multiple model results verification.
 <br>
 <br>
 <br>

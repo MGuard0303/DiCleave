@@ -6,7 +6,7 @@ DiCleave is a deep neural network model to predict Dicer cleavage site of human 
 The inputs of DiCleave is a RNA sequence segment and its corresponding pre-miRNA secondary structure embedding. Concretely, the length of RNA sequence segment is 14 nucleotide, with 13 dimensions.
 
 
-<img src="/img/input.png" alt="input" height="256">
+<img src="/img/input_.png" alt="input" height="256">
 
 As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
 

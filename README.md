@@ -64,6 +64,7 @@ python evaluate.py multi
 ```
 <br>
 <br>
+
 The data to verify our model is provided in **dataset**. We also provide the data that we used to train the models. You can merge test sets and training sets to get the raw dataset we employed in this study. In **paras**, we provides well-tuned model parameters for off-the-shelf usage.
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

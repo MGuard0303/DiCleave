@@ -1,14 +1,23 @@
 # DiCleave
-## 
 
 DiCleave is a deep neural network model to predict Dicer cleavage site of human precusor microRNAs (pre-miRNAs).
 
-
+We define a cleavage pattern of a pre-miRNA is a 14 nucleotides long sequence segment. If the Dicer cleavage site is located at the center of a cleavage pattern, we label this cleavage site as positive. Accordingly, if a cleavage pattern contains no Dicer cleavage pattern, then we label it as negative.
+<br>
+<br>
+<br>
+<img src="/img/cleav_patt.png" alt="cleavage pattern" height="256">
+<br>
+<br>
+<br>
 The inputs of DiCleave is a RNA sequence segment and its corresponding pre-miRNA secondary structure embedding. Concretely, the length of RNA sequence segment is 14 nucleotide, with 13 dimensions.
-
-
+<br>
+<br>
+<br>
 <img src="/img/input_.png" alt="input" height="256">
-
+<br>
+<br>
+<br>
 As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
 
 

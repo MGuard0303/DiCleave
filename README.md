@@ -26,11 +26,24 @@ The inputs of DiCleave is a combination of sequence of cleavage pattern, its com
 <br>
 As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
 
+Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional vector, which is acquired from an autoencoder.
+<br>
+<br>
+## Requirement
 
-The pre-miRNA secondary structure embedding is a 64-dimensional vector acquired from an autoencoder.
+DiCleave is built with `Python 3.7.9`. It also requires following dependency:
+* `PyTorch >= 1.11.0`
+* `Pandas >= 1.2.5`
+* `Numpy >= 1.21.0`
+* `scikit-learn >= 1.0.2`
 <br>
 <br>
 <br>
+## Usage
+
+To use DiCleave, first clone it to your local repository.
+`git clone `
+
 **To verify the results from our article, clone this repository and run :page_facing_up: evalute.py file**
 
 You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. `mode` accepts two values, "binary" and "multi", to evaluate the results of binary models and multiple model, respectively. Thus, first change the working directory to DiCleave, then run `python3 evaluate.py binary` to verify binary models, or run `python3 evaluate.py multi` for multiple model results verification.

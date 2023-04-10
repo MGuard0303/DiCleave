@@ -56,7 +56,7 @@ def verify(mdl, test_loader, mode):
         loss_total = 0.0
         pred_list = []
         label_list = []
-        confusion_total = torch.zeros(3, 3, dtype=torch.LongTensor)
+        confusion_total = torch.zeros(3, 3, dtype=torch.long)
 
 
         for step, (inputs, embeds, labels) in enumerate(test_loader, 1):
@@ -102,7 +102,7 @@ def verify(mdl, test_loader, mode):
 if __name__ == "__main__":
     mode = sys.argv[1]
 
-    ae_para = ".\paras\autoencoder.pt"
+    ae_para = r".\paras\autoencoder.pt"
     ae = model.AutoEncoder()
     ae.load_state_dict(torch.load(ae_para))
 
@@ -125,17 +125,17 @@ if __name__ == "__main__":
         # Prepare data
         df_5p = pd.read_csv(df_path_5p, index_col=0).sample(frac=1.0).reset_index(drop=True)
         df_5p = df_5p[["dot_bracket", "cleavage_window", "window_dot_bracket", "cleavage_window_comp", "label"]]
-        sec_struc_5p = df_5p[["dot_bracket"]]
+        sec_struc_5p = df_5p[["dot_bracket"]].copy()
         
         df_3p = pd.read_csv(df_path_3p, index_col=0).sample(frac=1.0).reset_index(drop=True)
         df_3p = df_3p[["dot_bracket", "cleavage_window", "window_dot_bracket", "cleavage_window_comp", "label"]]
-        sec_struc_3p = df_3p[["dot_bracket"]]
+        sec_struc_3p = df_3p[["dot_bracket"]].copy()
 
         for i in sec_struc_5p.index:
             sec_struc_5p.dot_bracket[i] = sec_struc_5p.dot_bracket[i].ljust(200, "N")
         
         for j in sec_struc_3p.index:
-            sec_struc_3p.dot_bracket[i] = sec_struc_3p.dot_bracket[i].ljust(200, "N")
+            sec_struc_3p.dot_bracket[j] = sec_struc_3p.dot_bracket[j].ljust(200, "N")
 
         sec_struc_5p = dc.one_hot_encoding(sec_struc_5p, "dot_bracket", [".", "(", ")", "N"])
         sec_struc_3p = dc.one_hot_encoding(sec_struc_3p, "dot_bracket", [".", "(", ")", "N"])
@@ -187,7 +187,7 @@ if __name__ == "__main__":
         df2 = pd.read_csv(df2_path, index_col=0)
         df3 = pd.read_csv(df3_path, index_col=0)
         df = pd.concat([df1, df2, df3], ignore_index=True).sample(frac=1.0).reset_index(drop=True)
-        sec_struc = df[["dot_bracket"]]
+        sec_struc = df[["dot_bracket"]].copy()
 
         for i in sec_struc.index:
             sec_struc.dot_bracket[i] = sec_struc.dot_bracket[i].ljust(200, "N")

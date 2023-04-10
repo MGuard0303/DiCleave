@@ -54,7 +54,7 @@ class CNNModel(nn.Module):
             "blk_2_1": nn.Conv1d(in_channels=2, out_channels=8, kernel_size=3, padding=1),
             "blk_2_2": nn.Conv1d(in_channels=8, out_channels=16, kernel_size=3, padding=1),
             "blk_2_3": nn.Conv1d(in_channels=16, out_channels=32, kernel_size=3, padding=1),
-            "blk_2_4": nn.Conv1d(in_channels=32, out_channel=64, kernel_size=3, padding=1)
+            "blk_2_4": nn.Conv1d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
         })
 
         self.bns = nn.ModuleDict({

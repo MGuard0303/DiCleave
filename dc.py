@@ -42,7 +42,7 @@ def one_hot_encoding(dataframe, column, token):
         temp.append(integer_seq)
 
     temp = np.array(temp)  # Convert python list to ndarray to speed up
-    integer_tensor = torch.tensor(temp)
+    integer_tensor = torch.tensor(temp, dtype=torch.long)
     one_hot_tensor = F.one_hot(integer_tensor)
     one_hot_tensor = torch.transpose(one_hot_tensor, 1, 2)
     one_hot_tensor = one_hot_tensor.type(torch.float)    # Sigmoid output layer requires Float type

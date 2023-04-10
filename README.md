@@ -41,17 +41,29 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 
 ## Usage
 
-To use DiCleave, first clone it to your local repository.
+To use DiCleave, first clone it to your local repository:
 
-`git clone `
+`git clone https://github.com/MGuard0303/DiCleave.git`
 
-**To verify the results from our article, clone this repository and run :page_facing_up: evalute.py file**
-
-You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. `mode` accepts two values, "binary" and "multi", to evaluate the results of binary models and multiple model, respectively. Thus, first change the working directory to DiCleave, then run `python3 evaluate.py binary` to verify binary models, or run `python3 evaluate.py multi` for multiple model results verification.
+Then, change the current directory to your local repository.
 <br>
+<br>
+
+**To verify the results from our article**
+
+You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. When verifying the binary model, set `mode` as "binary"; Set `mode` to "multi" when you verify the result of DiCleave multiple model.
+
+i.e.
+
+```
+# Verify binary model
+python evaluate.py binary
+
+# Verify multiple model
+python evaluate.py multi
+```
 <br>
 <br>
 The data to verify our model is provided in **dataset**. We also provide the data that we used to train the models. You can merge test sets and training sets to get the raw dataset we employed in this study. In **paras**, we provides well-tuned model parameters for off-the-shelf usage.
-
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

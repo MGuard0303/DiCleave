@@ -7,14 +7,20 @@ We define a cleavage pattern of a pre-miRNA is a 14 nucleotides long sequence se
 <br>
 <br>
 <img src="/img/cleav_patt.png" alt="cleavage pattern" height="256">
+
+*Illustration of cleavage pattern, example used is predicted secondary structure of hsa-mir548ar*
 <br>
 <br>
 <br>
-The inputs of DiCleave is a RNA sequence segment and its corresponding pre-miRNA secondary structure embedding. Concretely, the length of RNA sequence segment is 14 nucleotide, with 13 dimensions.
+We illustrate the concept of cleavage pattern and complementary sequence. The red box indicates cleavage pattern at 5' arm. The red asterisk indicate 5' arm Dicer cleavage site. Sequence above is the complementary sequence of this cleavage pattern. Note that the 5th and last two base are unpaired, thus we use symbol "O" to represent this structure.
+
+The inputs of DiCleave is a combination of sequence of cleavage pattern, its complementary sequence and its secondary structure in dot-bracket format. Therefore, the shape of inputs is 14\*13.
 <br>
 <br>
 <br>
 <img src="/img/input_.png" alt="input" height="256">
+
+*Input of DiCleave*
 <br>
 <br>
 <br>

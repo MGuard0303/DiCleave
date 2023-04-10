@@ -38,10 +38,11 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 * `scikit-learn >= 1.0.2`
 <br>
 <br>
-<br>
+
 ## Usage
 
 To use DiCleave, first clone it to your local repository.
+
 `git clone `
 
 **To verify the results from our article, clone this repository and run :page_facing_up: evalute.py file**

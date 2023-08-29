@@ -43,9 +43,12 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 
 To use DiCleave, first clone it to your local repository:
 
-`git clone https://github.com/MGuard0303/DiCleave.git`
+`git clone https://github.com/MGuard0303/DiCleave.git /YOUR/DIRECTORY/`
 
-Then, change the current directory to your local repository.
+
+You should find that all files of DiCleave have been cloned to your local repository. Then, change the current directory to your local repository.
+
+`cd /YOUR/DIRECTORY`
 <br>
 <br>
 

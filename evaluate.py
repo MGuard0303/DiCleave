@@ -1,3 +1,4 @@
+from pathlib import Path
 import sys
 
 import numpy as np
@@ -102,15 +103,15 @@ def verify(mdl, test_loader, mode):
 if __name__ == "__main__":
     mode = sys.argv[1]
 
-    ae_para = r".\paras\autoencoder.pt"
+    ae_para = Path("./paras/autoencoder.pt")
     ae = model.AutoEncoder()
     ae.load_state_dict(torch.load(ae_para))
 
     if mode == "binary":
-        df_path_5p = r".\dataset\test\test_5p.csv"
-        df_path_3p = r".\dataset\test\test_3p.csv"
-        mdl_para_5p = r".\paras\model_5p.pt"
-        mdl_para_3p = r".\paras\model_3p.pt"
+        df_path_5p = Path("./dataset/test/test_5p.csv")
+        df_path_3p = Path("./dataset/test/test_3p.csv")
+        mdl_para_5p = Path("./paras/model_5p.pt")
+        mdl_para_3p = Path("./paras/model_3p.pt")
 
         # Initialize models
         model_5p = model.CNNModel(task=mode, name="model_5p")
@@ -171,10 +172,10 @@ if __name__ == "__main__":
 
 
     if mode == "multi":
-        df1_path = r".\dataset\test\test_multi_positive.csv"
-        df2_path = r".\dataset\test\test_multi_negative_5p.csv"
-        df3_path = r".\dataset\test\test_multi_negative_3p.csv"
-        mdl_para = r".\paras\model_multi.pt"
+        df1_path = Path("./dataset/test/test_multi_positive.csv")
+        df2_path = Path("./dataset/test/test_multi_negative_5p.csv")
+        df3_path = Path("./dataset/test/test_multi_negative_3p.csv")
+        mdl_para = Path("./paras/model_multi.pt")
 
 
         model_multi = model.CNNModel(task=mode, name="model_multi")

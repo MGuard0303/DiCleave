@@ -27,8 +27,10 @@ The inputs of DiCleave is a combination of sequence of cleavage pattern, its com
 As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
 
 Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional vector, which is acquired from an autoencoder.
+
 <br>
 <br>
+
 ## Requirement
 
 DiCleave is built with `Python 3.7.9`. It also requires following dependency:
@@ -36,6 +38,14 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 * `Pandas >= 1.2.5`
 * `Numpy >= 1.21.0`
 * `scikit-learn >= 1.0.2`
+<br>
+
+The dependency should not be a problem in most of cases because the project has been tested under higher version of these packages. If you do face the dependecy problem, please execute the following code:
+
+`pip install -r requirements.txt`
+
+If you still have any question about dependency, please contact me without hesitation.
+
 <br>
 <br>
 

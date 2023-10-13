@@ -106,4 +106,10 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 
 We provide a simple example to give an intuitive explanation.
 
+The dataset we use in this example is stored in `./example`. In this dataset, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the third column, the fourth column, the sixth column and the fifth column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
+
+We use the multiple classification mode of DiCleave:
+
+`python dicleave.py --mode multi --input_path ./example`
+
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

@@ -110,6 +110,12 @@ The dataset we use in this example is stored in `./example`. In this dataset, th
 
 We use the multiple classification mode of DiCleave:
 
-`python dicleave.py --mode multi --input_path ./example`
+`python dicleave.py --mode multi --input_path ./example/DiCleave_dataset.csv --data_index 2354 --output_path ./example`
+
+<br>
+<br>
+
+### Train your DiCleave
+
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

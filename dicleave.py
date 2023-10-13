@@ -20,7 +20,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args)
 
-    ae_para = Path("./test/autoencoder.pt")
+    ae_para = Path("./paras/autoencoder.pt")
     ae = model.AutoEncoder()
     ae.load_state_dict(torch.load(ae_para))
 
@@ -57,15 +57,15 @@ if __name__ == "__main__":
 
     # Initial models
     if args.mode == "3":
-        model_para = Path("./test/best_3p.pt")
+        model_para = Path("./paras/model_3p.pt")
         mdl = model.CNNModel(task="binary", name="3 prime binary model")
         mdl.load_state_dict(torch.load(model_para))
     elif args.mode == "5":
-        model_para = Path("./test/best_5p.pt")
+        model_para = Path("./paras/model_5p.pt")
         mdl = model.CNNModel(task="binary", name="5 prime binary model")
         mdl.load_state_dict(torch.load(model_para))
     elif args.mode == "multi":
-        model_para = Path("./test/best_multi.pt")
+        model_para = Path("./paras/model_multi.pt")
         mdl = model.CNNModel(task="multi", name="multiple classification model")
         w = torch.tensor([0.5, 1, 1])
         mdl.loss_func = torch.nn.NLLLoss(weight=w)

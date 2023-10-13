@@ -95,14 +95,16 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 
 `python dicleave.py --mode --input_path --data_index --output_path`
 
-- **mode**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
-- **input_path**: The path of input dataset. Note that the dataset should be a CSV file.
-- **data_index**: Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
+<br>
+
+- **--mode**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
+- **--input_path**: The path of input dataset. Note that the dataset should be a CSV file.
+- **--data_index**: Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
   - Dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complemetary sequence
   - Dot-bracket cleavage pattern sequence
-- **output_path**: Path where DiCleave store its result.
+- **--output_path**: Path where DiCleave store its result.
 
 We provide a simple example to give an intuitive explanation.
 

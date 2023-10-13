@@ -3,27 +3,31 @@
 DiCleave is a deep neural network model to predict Dicer cleavage site of human precusor microRNAs (pre-miRNAs).
 
 We define a cleavage pattern of a pre-miRNA is a 14 nucleotides long sequence segment. If the Dicer cleavage site is located at the center of a cleavage pattern, we label this cleavage site as positive. Accordingly, if a cleavage pattern contains no Dicer cleavage pattern, then we label it as negative.
+
 <br>
 <br>
-<br>
+
 <img src="/img/cleav_patt.png" alt="cleavage pattern" height="256">
 
 *Illustration of cleavage pattern, example used is predicted secondary structure of hsa-mir548ar*
+
 <br>
 <br>
-<br>
+
 We illustrate the concept of cleavage pattern and complementary sequence. The red box indicates cleavage pattern at 5' arm. The red asterisk indicate 5' arm Dicer cleavage site. Sequence above is the complementary sequence of this cleavage pattern. Note that the 5th and last two base are unpaired, thus we use symbol "O" to represent this structure.
 
 The inputs of DiCleave is a combination of sequence of cleavage pattern, its complementary sequence and its secondary structure in dot-bracket format. Therefore, the shape of inputs is 14\*13.
+
 <br>
 <br>
-<br>
+
 <img src="/img/input_.png" alt="input" height="256">
 
 *Input of DiCleave*
+
 <br>
 <br>
-<br>
+
 As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
 
 Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional vector, which is acquired from an autoencoder.
@@ -38,6 +42,7 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 * `Pandas >= 1.2.5`
 * `Numpy >= 1.21.0`
 * `scikit-learn >= 1.0.2`
+
 <br>
 
 The dependency should not be a problem in most of cases because the project has been tested under higher version of these packages. If you do face the dependecy problem, please execute the following code:
@@ -51,20 +56,21 @@ If you still have any question about dependency, please contact me without hesit
 
 ## Usage
 
-To use DiCleave, first clone it to your local repository:
+### Verify results from our article
+
+First, clone DiCleave to your local repository:
 
 `git clone https://github.com/MGuard0303/DiCleave.git /YOUR/DIRECTORY/`
 
+<br>
 
 You should find that all files of DiCleave have been cloned to your local repository. Then, change the current directory to your local repository.
 
 `cd /YOUR/DIRECTORY`
-<br>
+
 <br>
 
-**To verify the results from our article**
-
-You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. When verifying the binary model, set `mode` as "binary"; Set `mode` to "multi" when you verify the result of DiCleave multiple model.
+You need to provide a command line parameter `mode` when runing :page_facing_up: **evalute.py file**. When verifying the binary classification model, set `mode` to "binary"; When verifying the multiple classification model, set `mode` to "multi".
 
 i.e.
 
@@ -75,9 +81,14 @@ python evaluate.py binary
 # Verify multiple model
 python evaluate.py multi
 ```
+
+<br>
+
+The data to verify our model is provided in `./dataset`. We also provide the data that we used to train the models. You can merge test sets and training sets to get the raw dataset we employed in this study. In `./paras`, we provides well-tuned model parameters for off-the-shelf usage.
+
 <br>
 <br>
 
-The data to verify our model is provided in **dataset**. We also provide the data that we used to train the models. You can merge test sets and training sets to get the raw dataset we employed in this study. In **paras**, we provides well-tuned model parameters for off-the-shelf usage.
+### Use DiCleave to make prediction
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

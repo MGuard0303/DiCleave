@@ -91,4 +91,19 @@ The data to verify our model is provided in `./dataset`. We also provide the dat
 
 ### Use DiCleave to make prediction
 
+To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. The syntax is
+
+`python dicleave.py --mode --input_path --data_index --output_path`
+
+- **mode**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
+- **input_path**: The path of input dataset. Note that the dataset should be a CSV file.
+- **data_index**: Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
+  - Dot-bracket secondary structure sequence
+  - Cleavage pattern sequence
+  - Complemetary sequence
+  - Dot-bracket cleavage pattern sequence
+- **output_path**: Path where DiCleave store its result.
+
+We provide a simple example to give an intuitive explanation.
+
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

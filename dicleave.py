@@ -25,7 +25,7 @@ if __name__ == "__main__":
     ae.load_state_dict(torch.load(ae_para))
 
     if os.path.isfile(args.input_file):
-        df_path = Path(args.input_path)
+        df_path = Path(args.input_file)
     else:
         raise ValueError("--input_file should be an existing CSV file.")
     

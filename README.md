@@ -97,15 +97,15 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 
 <br>
 
-- **--mode / -m**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
-- **--input_file / -i**: **Required** The path of input dataset. The dataset should be a CSV file.
-- **--data_index / -di**: **Required** Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
+- **--mode / -m**:  **[Required]**  Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
+- **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file.
+- **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
   - Dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complemetary sequence
   - Dot-bracket cleavage pattern sequence
-- **--output_file / -o**: **Required** Path of output file.
-- **--model_path / -mp**: **Optional** Path of DiCleave model parameter file. DiCleave model parameter is a .pt file.
+- **--output_file / -o**:  **[Required]**  Path of output file.
+- **--model_path / -mp**:  **[Optional]**  Path of DiCleave model parameter file. DiCleave model parameter is a .pt file.
 
 We provide a simple example to give an intuitive explanation.
 

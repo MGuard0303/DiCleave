@@ -93,26 +93,27 @@ The data to verify our model is provided in `./dataset`. We also provide the dat
 
 To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. The syntax is
 
-`python dicleave.py --mode --input_path --data_index --output_path`
+`python dicleave.py --mode --input_file --data_index --output_file`
 
 <br>
 
-- **--mode**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
-- **--input_path**: The path of input dataset. Note that the dataset should be a CSV file.
-- **--data_index**: Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
+- **--mode / -m**: Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
+- **--input_file / -i**: **Required** The path of input dataset. The dataset should be a CSV file.
+- **--data_index / -di**: **Required** Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
   - Dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complemetary sequence
   - Dot-bracket cleavage pattern sequence
-- **--output_path**: Path where DiCleave store its result.
+- **--output_file / -o**: **Required** Path of output file.
+- **--model_path / -mp**: **Optional** Path of DiCleave model parameter file. DiCleave model parameter is a .pt file.
 
 We provide a simple example to give an intuitive explanation.
 
-The dataset we use in this example is stored in `./example`. In this dataset, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the third column, the fourth column, the sixth column and the fifth column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
+The dataset we use in this example is stored in `./example`. In this dataset, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd column, the 4th column, the 6th column and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 
-`python dicleave.py --mode multi --input_path ./example/DiCleave_dataset.csv --data_index 2354 --output_path ./example`
+`python dicleave.py --mode multi --input_path ./example/DiCleave_dataset.csv --data_index 2354 --output_path ./example/result.txt`
 
 <br>
 <br>

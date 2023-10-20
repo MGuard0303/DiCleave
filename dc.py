@@ -219,6 +219,7 @@ def valid_step(mdl, inputs, embeds, labels):
     return loss.item(), predictions
 
 
+"""Deprecated. Will be deleted in the future."""
 def bi_train(mdl, train_loader, valid_loader, epochs, num_mdl=3, tolerance=3, verbose=False):
     print()
     print_bar()
@@ -325,6 +326,7 @@ def bi_train(mdl, train_loader, valid_loader, epochs, num_mdl=3, tolerance=3, ve
     return model_queue, mdl
 
 
+"""Deprecated. Will be deleted in the future."""
 def multi_train(mdl, train_loader, valid_loader, epochs, num_mdl=3, tolerance=3, verbose=False):
     print()
     print_bar()

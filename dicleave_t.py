@@ -32,7 +32,7 @@ if __name__ == "__main__":
     TOL = args.tolerance
 
 
-    ae_para = Path("./test/autoencoder.pt")
+    ae_para = Path("./paras/autoencoder.pt")
     ae = model.AutoEncoder()
     ae.load_state_dict(torch.load(ae_para))
 

@@ -100,7 +100,7 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 - **--mode / -m**:  **[Required]**  Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
 - **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file.
 - **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
-  - Dot-bracket secondary structure sequence
+  - Full-length dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complemetary sequence
   - Dot-bracket cleavage pattern sequence
@@ -113,12 +113,37 @@ The dataset we use in this example is stored in `./example`. In this dataset, th
 
 We use the multiple classification mode of DiCleave:
 
+First, change the working directory to DiCleave directory:
+
+`cd /DICLEAVE/DIRECTORY`
+
+<br>
+
+then,
+
 `python dicleave.py --mode multi --input_path ./example/DiCleave_dataset.csv --data_index 2354 --output_path ./example/result.txt`
 
 <br>
 <br>
 
 ### Train your DiCleave
+
+We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train your own DiCleave model, rather than using the default model we used in this study. The syntax is
+
+`python dicleave_t.py --mode --input_file --data_index --output_file --valid_ratio --batch_size -- learning_rate --weight_decay --nll_weight --max_epoch -k --tolerance`
+
+<br>
+
+- **--mode / -m**:  **[Required]**  Designate DiCleave model, should be "3", "5" or "multi". DiCleave will work on binary classification mode if "3" or "5" is provided. DiCleave will work on multiple classification mode if "multi" is provided.
+- **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file. Note that for training a binary DiCleave model, the labels of dataset can only contain 0 and 1.
+- **--data_index / -di**  **[Required]**  Columns index of input dataset. This parameter should be a 5-digit number. Each digit means:
+  - Full-length dot-bracket secondary structure sequence
+  - Cleavage pattern sequence
+  - Complementary sequence
+  - Dot-bracket cleavage pattern sequence
+  - Labels
+- **--output_file / -o**  **[Required]**  The path of directory to stored trained model parameters.
+- **--valid_ratio / -vr**  **[Optional]**  The ratio of valid set in input dataset, default is 0.1.
 
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

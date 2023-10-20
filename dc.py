@@ -542,3 +542,179 @@ def evaluate(mdl, test_loader, returns=False):
 
         if returns:
             return raw_pred, pred_list, label_list
+
+
+def predict(mode, model, data_loader):
+    model.eval()
+
+    # Binary prediction
+    if mode == "3" or mode == "5":
+        prediction_list = []
+        raw_prediction_list = []
+
+        for _, (inputs, embeds) in enumerate(data_loader):
+            raw_prediction = model(inputs, embeds)
+
+            labeled_prediction = raw_prediction.squeeze(1).round().tolist()
+            raw_prediction = raw_prediction.squeeze(1).tolist()
+
+            # Get list of predictions
+            for lp in labeled_prediction:
+                lp = int(lp)
+                prediction_list.append(lp)
+
+            for rp in raw_prediction:
+                raw_prediction_list.append(rp)
+
+        return raw_prediction_list, prediction_list
+    
+
+    # Multiple prediction
+    if mode == "multi":
+        prediction_list = []
+        raw_prediction_list = []
+
+        for _, (inputs, embeds) in enumerate(data_loader):
+            raw_prediction = model(inputs, embeds)
+
+            # Get list of predictions
+            batch_prediction = []
+
+            for i in raw_prediction:
+                batch_prediction.append(i.argmax().item())
+
+            for p in batch_prediction:
+                p = int(p)
+                prediction_list.append(p)
+
+            for rp in raw_prediction:
+                rp = torch.exp(rp).tolist()
+                raw_prediction_list.append(rp)
+
+        return raw_prediction_list, prediction_list
+
+
+def train(model, loader_t, loader_v, epoch, k, t):
+    print()
+    print_bar()
+    print(f"{model.name}: Start training...")
+
+    best_val_acc = 0
+    model_queue = ModelQ(k)
+
+    TOLERANCE = t
+    tol = 0
+
+    for epoch in range(1, epoch+1):
+        epoch_loss = 0.0
+
+        # Training step
+        for step_t, (inputs, embeds, labels) in enumerate(loader_t, 1):
+            if model.task == "multi":
+                labels = labels.squeeze(1)
+                labels = labels.type(torch.long)
+            
+            batch_loss, batch_pred = train_step(model, inputs, embeds, labels)
+            batch_confusion = confusion_mtx(batch_pred, labels, model.task)
+            
+            if model.task == "binary":
+                batch_acc, _, _, _, _, _ = bi_metrics(batch_confusion)
+            elif model.task == "multi":
+                batch_acc, _, _, _, _, _ = multi_metrics(batch_confusion)
+
+            epoch_loss += batch_loss
+
+            # Validate model in certain epoch
+        if epoch % 1 == 0:
+            print()
+            print("Validating...")
+
+            valid_loss_total = 0.0
+                
+            if model.task == "binary":
+                valid_confusion_total = [0, 0, 0, 0]
+            elif model.task == "multi":
+                valid_confusion_total = torch.zeros(3, 3, dtype=torch.long)
+                
+            pred_list = []
+            label_list = []
+
+            for step_v, (inputs, embeds, labels) in enumerate(loader_v, 1):
+                if model.task == "multi":
+                    labels = labels.squeeze(1)
+                    labels = labels.type(torch.long)
+
+                batch_loss_v, batch_pred_v = valid_step(model, inputs, embeds, labels)
+                valid_confusion = confusion_mtx(batch_pred_v, labels, model.task)
+
+                if model.task == "binary":
+                    valid_confusion_total = np.sum([valid_confusion_total, valid_confusion], axis=0).tolist()
+                elif model.task == "multi":
+                    valid_confusion_total += valid_confusion
+
+                valid_loss_total += batch_loss_v
+
+                # Create prediction and label list for this batch
+                if model.task == "binary":
+                    labels = labels.squeeze(1).tolist()
+                    predictions = batch_pred_v.squeeze(1).round().tolist()
+
+                    for lbl in labels:
+                        label_list.append(lbl)
+
+                    for pred in predictions:
+                        pred_list.append(pred)
+
+                if model.task == "multi":
+                    labels = labels.tolist()
+                        
+                    pred_temp = []
+
+                    for i in batch_pred_v:
+                        pred_temp.append(i.argmax().item())
+
+                    for lbl in labels:
+                        label_list.append(lbl)
+
+                    for pred in pred_temp:
+                        pred_list.append(pred)
+
+            if model.task == "binary":
+                acc_v, pre_v, rec_v, spe_v, sen_v, f_one_v = bi_metrics(valid_confusion_total)
+                mcc_v = sklearn.metrics.matthews_corrcoef(label_list, pred_list)
+
+            elif model.task == "multi":
+                acc_v, pre_v, rec_v, spe_v, sen_v, f_one_v = multi_metrics(valid_confusion_total)
+                mcc_v = sklearn.metrics.matthews_corrcoef(label_list, pred_list)
+
+            avg_loss_t = epoch_loss / step_t
+            avg_loss_v = valid_loss_total / step_v
+
+            # Select model model on valid accuracy
+            if acc_v > best_val_acc:
+                best_val_acc = acc_v
+                best_model = copy.deepcopy(model)
+                model_queue.stack(best_model)
+
+            # Epoch level reports
+            print_bar()
+            print(f"| Epoch {epoch:02}")
+            print(f"| Average Training Loss: {avg_loss_t:.4f}")
+            print(f"| Average Valid Loss: {avg_loss_v:.4f} | Valid Precision: {pre_v:.4f} | Valid Recall: {rec_v:.4f} | Valid Specificity: {spe_v:.4f} | Valid Sensitivity: {sen_v:.4f} | Valid F1-score: {f_one_v:.4f} | Valid MCC: {mcc_v:.4f} |")
+
+            # Early-stopping
+            if avg_loss_v >= 1.5 * avg_loss_t:
+                if tol < TOLERANCE:
+                    tol += 1
+                elif tol >= TOLERANCE:
+                    print()
+                    print_bar()
+                    print("Stopped by early-stopping")
+                    break
+
+    print()
+    print_bar()
+    print()
+    print(f"{model.name}: Training complete.")
+
+    return model_queue

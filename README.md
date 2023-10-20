@@ -136,21 +136,21 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
 
 - **--mode / -m**:  **[Required]**  Designate DiCleave model, should be "3", "5" or "multi". DiCleave will work on binary classification mode if "3" or "5" is provided. DiCleave will work on multiple classification mode if "multi" is provided.
 - **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file. Note that for training a binary DiCleave model, the labels of dataset can only contain 0 and 1.
-- **--data_index / -di**  **[Required]**  Columns index of input dataset. This parameter should be a 5-digit number. Each digit means:
+- **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 5-digit number. Each digit means:
   - Full-length dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complementary sequence
   - Dot-bracket cleavage pattern sequence
   - Labels
-- **--output_file / -o**  **[Required]**  The path of directory to stored trained model parameters.
-- **--valid_ratio / -vr**  **[Optional]**  The ratio of valid set in input dataset, default is 0.1.
-- **--batch_size / -bs**  **[Optional]**  Batch size for each mini-batch during training, default is 20.
-- **--learning_rate / -lr**  **[Optional]**  Learning rate of optimizer, default is 0.005.
-- **--weight_decay / -wd**  **[Optional]**  Weight decay parameter of optimizer, default is 0.001.
-- **--nll_weight / -nw**  **[Optional]**  Weight of each class in NLLLoss function. Should be a list with three elements, the first element represents negative label (i.e. label=0).Default is [1.0, 1.0, 1.0].
-- **--max_epoch / -me**  **[Optional]**  Max epoch of training process, default is 75.
-- **-k**  **[Optional]**  **[Optional]**  Top-k models will be outputed after training. Default is 3, meaning the training process will output 3 best models on validation set.
-- **--tolerance / -tol**  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
+- **--output_file / -o**:  **[Required]**  The path of directory to stored trained model parameters.
+- **--valid_ratio / -vr**:  **[Optional]**  The ratio of valid set in input dataset, default is 0.1.
+- **--batch_size / -bs**:  **[Optional]**  Batch size for each mini-batch during training, default is 20.
+- **--learning_rate / -lr**:  **[Optional]**  Learning rate of optimizer, default is 0.005.
+- **--weight_decay / -wd**:  **[Optional]**  Weight decay parameter of optimizer, default is 0.001.
+- **--nll_weight / -nw**:  **[Optional]**  Weight of each class in NLLLoss function. Should be a list with three elements, the first element represents negative label (i.e. label=0).Default is [1.0, 1.0, 1.0].
+- **--max_epoch / -me**:  **[Optional]**  Max epoch of training process, default is 75.
+- **-k**  **[Optional]**:  **[Optional]**  Top-k models will be outputed after training. Default is 3, meaning the training process will output 3 best models on validation set.
+- **--tolerance / -tol**:  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
 
 Here, we provide two examples for intuitive explanations.
 

@@ -121,7 +121,7 @@ First, change the working directory to DiCleave directory:
 
 then,
 
-`python dicleave.py --mode multi --input_path ./example/DiCleave_dataset.csv --data_index 2354 --output_path ./example/result.txt`
+`python dicleave.py --mode multi --input_file ./example/DiCleave_dataset.csv --data_index 2354 --output_file ./example/result.txt`
 
 <br>
 <br>
@@ -144,6 +144,35 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
   - Labels
 - **--output_file / -o**  **[Required]**  The path of directory to stored trained model parameters.
 - **--valid_ratio / -vr**  **[Optional]**  The ratio of valid set in input dataset, default is 0.1.
+- **--batch_size / -bs**  **[Optional]**  Batch size for each mini-batch during training, default is 20.
+- **--learning_rate / -lr**  **[Optional]**  Learning rate of optimizer, default is 0.005.
+- **--weight_decay / -wd**  **[Optional]**  Weight decay parameter of optimizer, default is 0.001.
+- **--nll_weight / -nw**  **[Optional]**  Weight of each class in NLLLoss function. Should be a list with three elements, the first element represents negative label (i.e. label=0).Default is [1.0, 1.0, 1.0].
+- **--max_epoch / -me**  **[Optional]**  Max epoch of training process, default is 75.
+- **-k**  **[Optional]**  **[Optional]**  Top-k models will be outputed after training. Default is 3, meaning the training process will output 3 best models on validation set.
+- **--tolerance / -tol**  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
 
+Here, we provide two examples for intuitive explanations.
+
+In the first example, we will train a multiple classification model. The dataset we use is the same in Prediction part. The label is in the 7th column, so the `--data_index` will be 23546 (Python index starts from 0).
+
+To train the multiple classification model, change working directory to DiCleave directory:
+
+`cd /DICLEAVE/DIRECTORY`
+
+then
+
+`python dicleave_t.py --mode multi --input_file ./paras/dc_dataset.csv --data_index 23546 --output_file ./paras --nll_weight 0.5 1.0 1.0`
+
+<br>
+
+We use parameter `--nll_weight` to change the weight of each class in this example.
+
+In second example we will train a binary classification model for cleavage pattern from 5' arm. Because the binary dataset is derived from :page_facing_up: **dc_dataset.csv**, the `--data_index` remains the same. The only change here is `--mode`:
+
+`python dicleave_t.py --mode 5 --input_file ./paras/dc_dataset_5p.csv --data_index 23546 --output_file ./paras`
+
+<br>
+<br>
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).

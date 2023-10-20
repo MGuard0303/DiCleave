@@ -99,49 +99,65 @@ def bi_metrics(confusion_list):
 
 
 def multi_metrics(mtx):
-    # Calculate accuracy
-    accuracy = (mtx[0, 0] + mtx[1, 1] + mtx[2, 2]) / torch.sum(mtx).item()
+    if mtx.size() == torch.Size([1, 1]):
+        [accuracy, precision, recall, specificity, sensitivity, f_one] = [1, 1, 1, 1, 1, 1]
 
-    # Calculate precision
-    pre0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[1, 0] + mtx[2, 0])
-    pre1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[0, 1] + mtx[2, 1])
-    pre2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[0, 2] + mtx[1, 2])
+    if mtx.size() == torch.Size([2, 2]):
+        # A tensor confusion matrix should be [0, 0] -> TN, [0, 1] -> FP, [1, 0] -> FN, [1, 1] -> TP
+        epsilon = 1e-8
+        accuracy = (mtx[1, 1] + mtx[0, 0]) / (mtx[1, 1] + mtx[0, 0] + mtx[0, 1] + mtx[1, 1])
 
-    precision = (pre0 + pre1 + pre2) / 3
+        precision = mtx[1, 1] / (mtx[1, 1] + mtx[0, 1] + epsilon)
+        recall = mtx[1, 1] / (mtx[1, 1] + mtx[1, 0] + epsilon)
 
-    # Calculate recall
-    re0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[0, 1] + mtx[0, 2])
-    re1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[1, 0] + mtx[1, 2])
-    re2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[2, 0] + mtx[2, 1])
+        specificity = mtx[0, 0] / (mtx[0, 0] + mtx[0, 1] + epsilon)
+        sensitivity = mtx[1, 1] / (mtx[1, 1] + mtx[1, 0] + epsilon)
 
-    recall = (re0 + re1 + re2) / 3
+        f_one = 2 * ((precision * recall) / (precision + recall + epsilon))
 
-    # Calculate specificity
-    spe0 = (mtx[1, 1] + mtx[1, 2] + mtx[2, 1] + mtx[2, 2]) / (mtx[1, 1] + mtx[1, 2] + mtx[2, 1] + mtx[2, 2] +
+    if mtx.size() == torch.Size([3, 3]):
+        # Calculate accuracy
+        accuracy = (mtx[0, 0] + mtx[1, 1] + mtx[2, 2]) / torch.sum(mtx).item()
+
+        # Calculate precision
+        pre0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[1, 0] + mtx[2, 0])
+        pre1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[0, 1] + mtx[2, 1])
+        pre2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[0, 2] + mtx[1, 2])
+
+        precision = (pre0 + pre1 + pre2) / 3
+
+        # Calculate recall
+        re0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[0, 1] + mtx[0, 2])
+        re1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[1, 0] + mtx[1, 2])
+        re2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[2, 0] + mtx[2, 1])
+
+        recall = (re0 + re1 + re2) / 3
+
+        # Calculate specificity
+        spe0 = (mtx[1, 1] + mtx[1, 2] + mtx[2, 1] + mtx[2, 2]) / (mtx[1, 1] + mtx[1, 2] + mtx[2, 1] + mtx[2, 2] +
                                                               mtx[1, 0] + mtx[2, 0])
-    spe1 = (mtx[0, 0] + mtx[0, 2] + mtx[2, 0] + mtx[2, 2]) / (mtx[0, 0] + mtx[0, 2] + mtx[2, 0] + mtx[2, 2] +
+        spe1 = (mtx[0, 0] + mtx[0, 2] + mtx[2, 0] + mtx[2, 2]) / (mtx[0, 0] + mtx[0, 2] + mtx[2, 0] + mtx[2, 2] +
                                                               mtx[0, 1] + mtx[2, 1])
-    spe2 = (mtx[0, 0] + mtx[0, 1] + mtx[1, 0] + mtx[1, 1]) / (mtx[0, 0] + mtx[0, 1] + mtx[1, 0] + mtx[1, 1] +
+        spe2 = (mtx[0, 0] + mtx[0, 1] + mtx[1, 0] + mtx[1, 1]) / (mtx[0, 0] + mtx[0, 1] + mtx[1, 0] + mtx[1, 1] +
                                                               mtx[0, 2] + mtx[1, 2])
 
-    specificity = (spe0 + spe1 + spe2) / 3
+        specificity = (spe0 + spe1 + spe2) / 3
 
-    # Calculate sensitivity
-    sn0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[0, 1] + mtx[0, 2])
-    sn1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[1, 0] + mtx[1, 2])
-    sn2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[2, 0] + mtx[2, 1])
+        # Calculate sensitivity
+        sn0 = (mtx[0, 0]) / (mtx[0, 0] + mtx[0, 1] + mtx[0, 2])
+        sn1 = (mtx[1, 1]) / (mtx[1, 1] + mtx[1, 0] + mtx[1, 2])
+        sn2 = (mtx[2, 2]) / (mtx[2, 2] + mtx[2, 0] + mtx[2, 1])
 
-    sensitivity = (sn0 + sn1 + sn2) / 3
+        sensitivity = (sn0 + sn1 + sn2) / 3
 
-    # Calculate F1 score
-    f_one_0 = 2 * ((pre0 * re0) / (pre0 + re0))
-    f_one_1 = 2 * ((pre1 * re1) / (pre1 + re1))
-    f_one_2 = 2 * ((pre2 * re2) / (pre2 + re2))
+        # Calculate F1 score
+        f_one_0 = 2 * ((pre0 * re0) / (pre0 + re0))
+        f_one_1 = 2 * ((pre1 * re1) / (pre1 + re1))
+        f_one_2 = 2 * ((pre2 * re2) / (pre2 + re2))
 
-    f_one = (f_one_0 + f_one_1 + f_one_2) / 3
+        f_one = (f_one_0 + f_one_1 + f_one_2) / 3
 
     return [accuracy, precision, recall, specificity, sensitivity, f_one]
-
 
 def save_paras(model, path, filename):
     if not os.path.exists(path):
@@ -157,7 +173,7 @@ def save_paras(model, path, filename):
 
 def print_bar():
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print("=========="*15 + f" {current_time}")
+    print("=========="*8 + f" {current_time}")
 
 
 def del_files(path, chars):

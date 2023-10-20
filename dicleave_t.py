@@ -16,7 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("--input_file", "-i", type=str, help="Path of input dataset.")
     parser.add_argument("--data_index", "-di", type=tuple, help="Column index of input dataset. The index order should be 'dot-bracket of full-length sequence', 'cleavage pattern', 'complementary sequence', 'secondary structure of pattern', and 'label'.")
     parser.add_argument("--output_file", "-o", type=str, help="Path of output file.")
-    parser.add_argument("--valid_ratio", "-va", type=float, default=0.1, help="The ratio of valid set in dataset, default is 0.1.")
+    parser.add_argument("--valid_ratio", "-vr", type=float, default=0.1, help="The ratio of valid set in dataset, default is 0.1.")
     parser.add_argument("--batch_size", "-bs", type=int, default=32, help="Batch size during training, default is 20.")
     parser.add_argument("--learning_rate", "-lr", type=float, default=0.005, help="Learning rate of optimizer, default is 0.005.")
     parser.add_argument("--weight_decay", "-wd", type=float, default=0.001, help="Weight decay parameter of optimizer, default is 0.001")

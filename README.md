@@ -162,7 +162,7 @@ To train the multiple classification model, change working directory to DiCleave
 
 then
 
-`python dicleave_t.py --mode multi --input_file ./paras/dc_dataset.csv --data_index 23546 --output_file ./paras --nll_weight 0.5 1.0 1.0`
+`python dicleave_t.py --mode multi --input_file ./example/dc_dataset.csv --data_index 23546 --output_file ./example --nll_weight 0.5 1.0 1.0`
 
 <br>
 
@@ -170,7 +170,7 @@ We use parameter `--nll_weight` to change the weight of each class in this examp
 
 In second example we will train a binary classification model for cleavage pattern from 5' arm. Because the binary dataset is derived from :page_facing_up: **dc_dataset.csv**, the `--data_index` remains the same. The only change here is `--mode`:
 
-`python dicleave_t.py --mode 5 --input_file ./paras/dc_dataset_5p.csv --data_index 23546 --output_file ./paras`
+`python dicleave_t.py --mode 5 --input_file ./example/dc_dataset_5p.csv --data_index 23546 --output_file ./example`
 
 <br>
 <br>

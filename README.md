@@ -121,7 +121,7 @@ First, change the working directory to DiCleave directory:
 
 then,
 
-`python dicleave.py --mode multi --input_file ./example/DiCleave_dataset.csv --data_index 2354 --output_file ./example/result.txt`
+`python dicleave.py --mode multi --input_file ./example/dc_dataset.csv --data_index 2354 --output_file ./example/result.txt`
 
 <br>
 <br>

@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # Initial models
     if args.mode == "3":
         if not args.model_path == "None":
-            if not os.path.isfile(args.model_file):
+            if not os.path.isfile(args.model_path):
                 raise ValueError("--model_path should be an existing file.")
             else:
                 model_para = Path(args.model_path)

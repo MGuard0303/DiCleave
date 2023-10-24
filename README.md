@@ -114,6 +114,7 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 We provide a simple example to give an intuitive explanation.
 
 The dataset we use in this example is stored in `./example`. This dataset consists of 7 columns. The description of this dataset is shown below.
+- **unnamed**: Used as index.
 - **name**: ID of each cleavage pattern entity.
 - **sequence**: Full-length pre-miRNA sequence of cleavage pattern.
 - **dot_bracket**: Dot-bracket secondary structure of pre-miRNA.
@@ -124,7 +125,7 @@ The dataset we use in this example is stored in `./example`. This dataset consis
 
 <br>
 
-As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd, the 4th, the 6th and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
+As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 4rd, the 5th, the 7th and the 6th column, respectively. Therefore, the `--data_index` parameter should be 3465 (Index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 
@@ -136,7 +137,7 @@ First, change the working directory to DiCleave directory:
 
 then run:
 
-`python dicleave.py --mode multi --input_file ./example/dc_dataset.csv --data_index 2354 --output_file ./example/result.txt`
+`python dicleave.py --mode multi --input_file ./example/dc_dataset.csv --data_index 3465 --output_file ./example/result.txt`
 
 <br>
 <br>
@@ -181,7 +182,7 @@ To train the multiple classification model, change working directory to DiCleave
 
 then run:
 
-`python dicleave_t.py --mode multi --input_file ./example/dc_dataset.csv --data_index 23546 --output_file ./example --nll_weight 0.5 1.0 1.0`
+`python dicleave_t.py --mode multi --input_file ./example/dc_dataset.csv --data_index 34657 --output_file ./example --nll_weight 0.5 1.0 1.0`
 
 <br>
 
@@ -189,7 +190,7 @@ We use parameter `--nll_weight` to change the weight of each class in this examp
 
 In second example we will train a binary classification model for cleavage pattern from 5' arm. Because the binary dataset is derived from :page_facing_up: **dc_dataset.csv**, the `--data_index` remains the same. The only change here is `--mode`:
 
-`python dicleave_t.py --mode 5 --input_file ./example/dc_dataset_5p.csv --data_index 23546 --output_file ./example`
+`python dicleave_t.py --mode 5 --input_file ./example/dc_dataset_5p.csv --data_index 34657 --output_file ./example`
 
 <br>
 <br>

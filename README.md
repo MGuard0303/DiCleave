@@ -64,6 +64,8 @@ First, clone DiCleave to your local repository:
 
 <br>
 
+Besides, if you don't have git installed, or you don't want git to track your local files, it is easy to download all files from GitHub. See this [page](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives) for more information.
+
 You should find that all files of DiCleave have been cloned to your local repository. Then, change the current directory to your local repository.
 
 `cd /YOUR/DIRECTORY`
@@ -109,7 +111,16 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 
 We provide a simple example to give an intuitive explanation.
 
-The dataset we use in this example is stored in `./example`. In this dataset, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd column, the 4th column, the 6th column and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
+The dataset we use in this example is stored in `./example`. This dataset consists of 7 columns. The description of this dataset is shown below.
+- **name**: ID of each cleavage pattern entity (used as index column in our example).
+- **sequence**: Full-length pre-miRNA sequence of cleavage pattern.
+- **dot_bracket**: Dot-bracket secondary structure of pre-miRNA.
+- **cleavage_window**: Sequence of cleavage pattern.
+- **window_dot_cleavage**: Dot-bracket secondary structure of cleavage pattern.
+- **cleavage_window_comp**: Complementary sequence of cleavage pattern.
+- **label**: Label indicates whether a cleavage pattern contains a cleavage site in its middle. 
+
+As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd, the 4th, the 6th and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 ("name" is used as index column, and index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 
@@ -159,6 +170,8 @@ In the first example, we will train a multiple classification model. The dataset
 To train the multiple classification model, change working directory to DiCleave directory:
 
 `cd /DICLEAVE/DIRECTORY`
+
+<br>
 
 then
 

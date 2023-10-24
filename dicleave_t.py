@@ -37,7 +37,7 @@ if __name__ == "__main__":
     ae.load_state_dict(torch.load(ae_para))
 
     df_path = Path(args.input_file)
-    df = pd.read_csv(df_path, index_col=0)
+    df = pd.read_csv(df_path)
     df = df.iloc[:, [int(args.data_index[i]) for i in range(5)]]
     """
     Columns order must be:

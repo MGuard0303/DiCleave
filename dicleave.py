@@ -29,7 +29,7 @@ if __name__ == "__main__":
     else:
         raise ValueError("--input_file should be an existing CSV file.")
     
-    df = pd.read_csv(df_path, index_col=0)
+    df = pd.read_csv(df_path)
     df = df.iloc[:, [int(args.data_index[i]) for i in range(4)]]
     """
     Columns oredr must be:

@@ -109,18 +109,22 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 - **--output_file / -o**:  **[Required]**  Path of output file.
 - **--model_path / -mp**:  **[Optional]**  Path of DiCleave model parameter file. DiCleave model parameter is a .pt file.
 
+<br>
+
 We provide a simple example to give an intuitive explanation.
 
 The dataset we use in this example is stored in `./example`. This dataset consists of 7 columns. The description of this dataset is shown below.
-- **name**: ID of each cleavage pattern entity (used as index column in our example).
+- **name**: ID of each cleavage pattern entity.
 - **sequence**: Full-length pre-miRNA sequence of cleavage pattern.
 - **dot_bracket**: Dot-bracket secondary structure of pre-miRNA.
 - **cleavage_window**: Sequence of cleavage pattern.
 - **window_dot_cleavage**: Dot-bracket secondary structure of cleavage pattern.
 - **cleavage_window_comp**: Complementary sequence of cleavage pattern.
-- **label**: Label indicates whether a cleavage pattern contains a cleavage site in its middle. 
+- **label**: Label indicates whether a cleavage pattern contains a cleavage site in its middle.
 
-As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd, the 4th, the 6th and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 ("name" is used as index column, and index of Python starts from 0).
+<br>
+
+As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 3rd, the 4th, the 6th and the 5th column, respectively. Therefore, the `--data_index` parameter should be 2354 (Index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 
@@ -130,7 +134,7 @@ First, change the working directory to DiCleave directory:
 
 <br>
 
-then,
+then run:
 
 `python dicleave.py --mode multi --input_file ./example/dc_dataset.csv --data_index 2354 --output_file ./example/result.txt`
 
@@ -163,6 +167,8 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
 - **-k**  **[Optional]**:  **[Optional]**  Top-k models will be outputed after training. Default is 3, meaning the training process will output 3 best models on validation set.
 - **--tolerance / -tol**:  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
 
+<br>
+
 Here, we provide two examples for intuitive explanations.
 
 In the first example, we will train a multiple classification model. The dataset we use is the same in Prediction part. The label is in the 7th column, so the `--data_index` will be 23546 (Python index starts from 0).
@@ -173,7 +179,7 @@ To train the multiple classification model, change working directory to DiCleave
 
 <br>
 
-then
+then run:
 
 `python dicleave_t.py --mode multi --input_file ./example/dc_dataset.csv --data_index 23546 --output_file ./example --nll_weight 0.5 1.0 1.0`
 

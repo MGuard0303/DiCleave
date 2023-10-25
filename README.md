@@ -125,7 +125,7 @@ The dataset we use in this example is stored in `./example`. This dataset consis
 
 <br>
 
-As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 4rd, the 5th, the 7th and the 6th column, respectively. Therefore, the `--data_index` parameter should be 3465 (Index of Python starts from 0).
+As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 4th, the 5th, the 7th and the 6th column, respectively. Therefore, the `--data_index` parameter should be 3465 (Index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 

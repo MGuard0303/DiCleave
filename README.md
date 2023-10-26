@@ -38,8 +38,8 @@ Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional
 ## Requirement
 
 DiCleave is built with `Python 3.7.9`. It also requires following dependency:
-* `Pandas >= 1.2.5`
 * `Numpy >= 1.21.0`
+* `Pandas >= 1.2.5`
 * `scikit-learn >= 1.0.2`
 * `PyTorch >= 1.11.0`
 

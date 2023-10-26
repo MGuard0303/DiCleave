@@ -38,16 +38,14 @@ Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional
 ## Requirement
 
 DiCleave is built with `Python 3.7.9`. It also requires following dependency:
-* `PyTorch >= 1.11.0`
 * `Pandas >= 1.2.5`
 * `Numpy >= 1.21.0`
 * `scikit-learn >= 1.0.2`
+* `PyTorch >= 1.11.0`
 
 <br>
 
-The dependency should not be a problem in most of cases because the project has been tested under higher version of these packages. If you do face the dependecy problem, please execute the following code:
-
-`pip install -r requirements.txt`
+Any environment with the dependecy package version higher than the minimum version should work well. If you have problem when runing DiCleave, we provide environment files to help you to set up the proper environment. Please check [here](https://github.com/MGuard0303/DiCleave/tree/main/env) for more information. 
 
 If you still have any question about dependency, please contact me without hesitation.
 

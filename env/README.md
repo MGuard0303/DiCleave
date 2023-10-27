@@ -1,3 +1,5 @@
+# Setting up Environment
+
 In case you are facing problem when using DiCleave, we provide two environments.The minimum evironment(**env_minm**) is the environment which DiCleave was build on. The recommended environment(**env_rec**) is an environment which contains dependency packages with much more newer version. These environments are list below:
 
 **env_min**

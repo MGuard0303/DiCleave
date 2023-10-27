@@ -164,7 +164,7 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
 - **--nll_weight / -nw**:  **[Optional]**  Weight of each class in NLLLoss function. Should be a list with three elements, the first element represents negative label (i.e. label=0).Default is [1.0, 1.0, 1.0].
 - **--max_epoch / -me**:  **[Optional]**  Max epoch of training process, default is 75.
 - **-k**  **[Optional]**:  **[Optional]**  Top-k models will be outputed after training. Default is 3, meaning the training process will output 3 best models on validation set.
-- **--tolerance / -tol**:  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
+- **--tolerance / -t**:  **[Optional]**  Tolerance for overfitting, default is 3. The higher the value, it is more likely to overfitting.
 
 <br>
 

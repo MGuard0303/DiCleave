@@ -4,17 +4,17 @@ In case you are facing problem when using DiCleave, we provide two environments.
 
 **env_min**
 - python == 3.7.9
-- numpy == 1.21.0
+- numpy == 1.21.2
 - pandas == 1.2.5
 - scikit-learn == 1.0.2
-- torch == 1.11.0
+- torch == 1.12.1
 
 <br>
 
 **env_rec**
 - python == 3.11.3
 - numpy == 1.24.3
-- pandas == 2.0.2
+- pandas == 2.0.3
 - scikit-learn == 1.2.2
 - torch == 2.0.1
 

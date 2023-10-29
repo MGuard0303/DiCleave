@@ -170,7 +170,7 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
 
 Here, we provide two examples for intuitive explanations.
 
-In the first example, we will train a multiple classification model. The dataset we use is the same in Prediction part. The label is in the 7th column, so the `--data_index` will be 23546 (Python index starts from 0).
+In the first example, we will train a multiple classification model. The dataset we use is the same in Prediction part. The label is in the 8th column, so the `--data_index` will be 34657 (Python index starts from 0).
 
 To train the multiple classification model, change working directory to DiCleave directory:
 

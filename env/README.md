@@ -45,7 +45,7 @@ The default name for recommended envrionment is dc_env_rec, you can find this en
 
 To activate the environment, please run:
 
-`conda activate dc_env_rec.yaml`
+`conda activate dc_env_rec`
 
 <br>
 

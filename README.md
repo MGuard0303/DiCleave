@@ -58,7 +58,7 @@ If you still have any question about dependency, please contact me without hesit
 
 First, clone DiCleave to your local repository:
 
-`git clone https://github.com/MGuard0303/DiCleave.git /YOUR/DIRECTORY/`
+`git clone https://github.com/MGuard0303/DiCleave.git /<YOUR DIRECTORY>`
 
 <br>
 
@@ -66,7 +66,7 @@ Besides, if you don't have git installed, or you don't want git to track your lo
 
 You should find that all files of DiCleave have been cloned to your local repository. Then, change the current directory to your local repository.
 
-`cd /YOUR/DIRECTORY`
+`cd /<YOUR DIRECTORY>`
 
 <br>
 
@@ -129,7 +129,7 @@ We use the multiple classification mode of DiCleave:
 
 First, change the working directory to DiCleave directory:
 
-`cd /DICLEAVE/DIRECTORY`
+`cd /<YOUR DIRECTORY>`
 
 <br>
 
@@ -174,7 +174,7 @@ In the first example, we will train a multiple classification model. The dataset
 
 To train the multiple classification model, change working directory to DiCleave directory:
 
-`cd /DICLEAVE/DIRECTORY`
+`cd /<YOUR DIRECTORY>`
 
 <br>
 

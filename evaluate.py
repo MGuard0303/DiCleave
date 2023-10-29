@@ -95,7 +95,7 @@ def verify(mdl, test_loader, mode):
 
 
         # Print results
-        dc.print_bar
+        dc.print_bar()
         print(f"Average Loss: {avg_loss:.4f} | Accuracy: {acc:.4f} | Precision: {pre:.4f} | Recall: {rec:.4f} | Specificity: {spe:.4f} | Sensitivity: {sen:.4f} | F1-score: {f1:.4f} | MCC: {mcc:.4f} |")
 
 

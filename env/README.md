@@ -27,7 +27,7 @@ With Conda installed, you can now build the environment from environment depende
 
 In this example, we will build a recommended environment for DiCleave. First, chagne the working directory to DiCleave path:
 
-`cd /YOUR/DIRECTORY`
+`cd /<YOUR DIRECTORY>`
 
 <br>
 

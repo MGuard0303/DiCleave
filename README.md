@@ -2,7 +2,7 @@
 
 DiCleave is a deep neural network model to predict Dicer cleavage site of human precusor microRNAs (pre-miRNAs).
 
-We define a cleavage pattern of a pre-miRNA is a 14 nucleotides long sequence segment. If the Dicer cleavage site is located at the center of a cleavage pattern, we label this cleavage site as positive. Accordingly, if a cleavage pattern contains no Dicer cleavage pattern, then we label it as negative.
+We define a cleavage pattern of pre-miRNA is a 14 nucleotides long sequence segment. If the Dicer cleavage site is located at the center of a cleavage pattern, we label this cleavage site as positive. Accordingly, if a cleavage pattern contains no Dicer cleavage pattern, then we label it as negative.
 
 <br>
 <br>
@@ -14,7 +14,7 @@ We define a cleavage pattern of a pre-miRNA is a 14 nucleotides long sequence se
 <br>
 <br>
 
-We illustrate the concept of cleavage pattern and complementary sequence. The red box indicates cleavage pattern at 5' arm. The red asterisk indicate 5' arm Dicer cleavage site. Sequence above is the complementary sequence of this cleavage pattern. Note that the 5th and last two base are unpaired, thus we use symbol "O" to represent this structure.
+We illustrate the concept of cleavage pattern and complementary sequence. The red box indicates cleavage pattern at 5' arm. The red asterisk indicate 5' arm Dicer cleavage site. Sequence above is the complementary sequence of this cleavage pattern. Note that the 5th and last two bases are unpaired, thus we use symbol "O" to represent this structure.
 
 The inputs of DiCleave is a combination of sequence of cleavage pattern, its complementary sequence and its secondary structure in dot-bracket format. Therefore, the shape of inputs is 14\*13.
 
@@ -28,7 +28,7 @@ The inputs of DiCleave is a combination of sequence of cleavage pattern, its com
 <br>
 <br>
 
-As shown above, the encoding of input RNA sequence is composed of three parts. The yellow part is the encoding of sequence itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in yellow part. The last three dimensions are designated to the secondary structure of RNA sequence segment, encoded in dot-bracket format.
+As shown above, the encoding of input is composed of three parts. The yellow part is the encoding of cleavage pattern itself, which occupies 5 dimensions (A, C, G, U, O). The blue part is the encoding of complementary sequence, which also occupies 5 dimensions. The symbol "O" indicates unpaired base. Note that "O" is redundant in cleavage pattern encoding (yellow part). The last three dimensions are designated to the secondary structure of cleavage pattern, encoded in dot-bracket format.
 
 Additionally, the secondary structure embedding of pre-miRNA is a 64-dimensional vector, which is acquired from an autoencoder.
 
@@ -45,9 +45,9 @@ DiCleave is built with `Python 3.7.9`. It also requires following dependency:
 
 <br>
 
-Any environment with the dependecy package version higher than the minimum version should work well. If you have problem when runing DiCleave, we provide environment files to help you to set up the proper environment. Please check [here](https://github.com/MGuard0303/DiCleave/tree/main/env) for more information. 
+Any environment with the dependecy package version higher than the minimum version should work well. If you have problem when runing DiCleave, we provide environment files to help you set up the proper environment. Please check [here](https://github.com/MGuard0303/DiCleave/tree/main/env) for more information. 
 
-If you still have any question about dependency, please contact me without hesitation.
+If you still have any question about environment dependency, please contact me without hesitation.
 
 <br>
 <br>
@@ -99,7 +99,7 @@ To make prediction with DiCleave, please use :page_facing_up: **dicleave.py**. T
 
 - **--mode / -m**:  **[Required]**  Designate DiCleave mode, should be "3", "5" or "multi". DiCleave will work on binary classification mode if the value is "3" or "5". DiCleave will work on multiple classification mode if the value is "multi".
 - **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file.
-- **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 4-digit number. Each digit means:
+- **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 4-digit number. Each digit indicates:
   - Full-length dot-bracket secondary structure sequence
   - Cleavage pattern sequence
   - Complemetary sequence
@@ -123,7 +123,7 @@ The dataset we use in this example is stored in `./example`. This dataset consis
 
 <br>
 
-As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 4th, the 5th, the 7th and the 6th column, respectively. Therefore, the `--data_index` parameter should be 3465 (Index of Python starts from 0).
+As we can see, the full-length secondary structure sequence, cleavage pattern sequence, complementary sequence and cleavage pattern secondary structure are located in the 4th, 5th, 7th and 6th column, respectively. Therefore, the `--data_index` parameter should be 3465 (Index of Python starts from 0).
 
 We use the multiple classification mode of DiCleave:
 
@@ -138,6 +138,18 @@ then run:
 `python dicleave.py --mode multi --input_file ./example/dc_dataset.csv --data_index 3465 --output_file ./example/result.txt`
 
 <br>
+
+To make prediction using DiCleave binary mode, run:
+
+```
+# Predict 5' cleavage pattern
+python dicleave.py --mode 5 --input_file ./example/dc_dataset.csv --data_index 3465 --output_file ./example/result.txt
+
+# Predict 3' cleavage pattern
+python dicleave.py --mode 3 --input_file ./example/dc_dataset.csv --data_index 3465 --output_file ./example/result.txt
+```
+
+<br>
 <br>
 
 ### Train your DiCleave
@@ -149,7 +161,7 @@ We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train
 <br>
 
 - **--mode / -m**:  **[Required]**  Designate DiCleave model, should be "3", "5" or "multi". DiCleave will work on binary classification mode if "3" or "5" is provided. DiCleave will work on multiple classification mode if "multi" is provided.
-- **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file. Note that for training a binary DiCleave model, the labels of dataset can only contain 0 and 1.
+- **--input_file / -i**:  **[Required]**  The path of input dataset. The dataset should be a CSV file. Note that for training a binary DiCleave model, the label of dataset can only contain 0 and 1.
 - **--data_index / -di**:  **[Required]**  Columns index of input dataset. This parameter should be a 5-digit number. Each digit means:
   - Full-length dot-bracket secondary structure sequence
   - Cleavage pattern sequence
@@ -189,6 +201,24 @@ We use parameter `--nll_weight` to change the weight of each class in this examp
 In second example we will train a binary classification model for cleavage pattern from 5' arm. Because the binary dataset is derived from :page_facing_up: **dc_dataset.csv**, the `--data_index` remains the same. The only change here is `--mode`:
 
 `python dicleave_t.py --mode 5 --input_file ./example/dc_dataset_5p.csv --data_index 34657 --output_file ./example`
+
+<br>
+
+Similarly, when training DiCleave for 3' cleavage pattern prediction, run:
+
+`python dicleave_t.py --mode 3 --input_file ./example/dc_dataset_3p.csv --data_index 34657 --output_file ./example`
+
+<br>
+
+To evaluate the performance of your own DiCleave model, you should use both :page_facing_up: **dicleave_t.py** and :page_facing_up: **dicleave.py**. For example:
+
+```
+# Train model
+python dicleave_t.py --output_file <MODEL_PATH>
+
+# Evaluate model
+python dicleave.py --model_path <MODEL_PATH>/model_1.pt
+```
 
 <br>
 <br>

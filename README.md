@@ -210,7 +210,7 @@ Similarly, when training DiCleave for 3' cleavage pattern prediction, run:
 
 <br>
 
-To evaluate the performance of your own DiCleave model, you should use both :page_facing_up: **dicleave_t.py** and :page_facing_up: **dicleave.py**. For example:
+To make prediction with your own DiCleave model, you should use both :page_facing_up: **dicleave_t.py** and :page_facing_up: **dicleave.py**. For example:
 
 ```
 # Train model

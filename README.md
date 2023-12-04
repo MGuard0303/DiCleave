@@ -156,7 +156,7 @@ python dicleave.py --mode 3 --input_file ./example/dc_dataset.csv --data_index 3
 
 We also provide a script, :page_facing_up: **dicleave_t.py**, to allow you train your own DiCleave model, rather than using the default model we used in this study. The syntax is
 
-`python dicleave_t.py --mode --input_file --data_index --output_file --valid_ratio --batch_size -- learning_rate --weight_decay --nll_weight --max_epoch -k --tolerance`
+`python dicleave_t.py --mode --input_file --data_index --output_file --valid_ratio --batch_size --learning_rate --weight_decay --nll_weight --max_epoch -k --tolerance`
 
 <br>
 

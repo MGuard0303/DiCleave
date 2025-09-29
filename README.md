@@ -225,4 +225,4 @@ python dicleave.py --model_path <MODEL_PATH>/model_1.pt
 
 We open the API and source code of DiCleave in :page_facing_up: **model.py** and :page_facing_up: **dc.py** files. It can help you to use DiCleave, or to modify and customize your own model based on DiCleave. ~~You can find the API reference [here](https://bic-1.gitbook.io/dicleave/).~~
 
-**Important** The API description has been moved to the wiki page.
+**[Important]** The API description has been moved to the wiki page.
